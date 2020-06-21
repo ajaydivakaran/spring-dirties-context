@@ -32,7 +32,7 @@ public class ZConsumerIntegrationTest {
 
     //Todo - To get all tests in this project to pass look at Todo added to FirstHappyPathApplicationTest
     @Test
-    public void shouldReturnModifiedGreeting() {
+    public void shouldInvokeRepositoryWhenGreetedWithASpecificMessage() {
         when(greeter.welcome()).thenReturn(new Message("Ahem hello!!"));
 
         jmsTemplate.send("foo.bar", session -> session.createTextMessage("hello world"));
