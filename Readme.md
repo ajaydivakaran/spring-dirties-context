@@ -4,3 +4,5 @@ test classes to have a DirtiesContext annotation when the entire test suite is r
 2. Mocking of bean dependency for RestControllers seem to work differently than a JMS Listener i.e don't 
 need DirtiesContext on the earlier test classes.
 
+#### To reproduce test suite issues.
+Either run all tests in via IDE or run `./gradlew clean test` 
