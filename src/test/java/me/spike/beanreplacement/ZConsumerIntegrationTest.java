@@ -30,6 +30,7 @@ public class ZConsumerIntegrationTest {
     @MockBean
     private MessageRepository repository;
 
+    //Todo - To get all tests in this project to pass look at Todo added to FirstHappyPathApplicationTest
     @Test
     public void shouldReturnModifiedGreeting() {
         when(greeter.welcome()).thenReturn(new Message("Ahem hello!!"));
