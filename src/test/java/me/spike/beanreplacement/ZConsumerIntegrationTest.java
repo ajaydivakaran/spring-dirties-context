@@ -1,7 +1,7 @@
 package me.spike.beanreplacement;
 
 import me.spike.beanreplacement.contract.Message;
-import me.spike.beanreplacement.service.Greeter;
+import me.spike.beanreplacement.service.EnergeticGreeter;
 import me.spike.beanreplacement.service.MessageRepository;
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ public class ZConsumerIntegrationTest {
     private JmsTemplate jmsTemplate;
 
     @MockBean
-    private Greeter greeter;
+    private EnergeticGreeter greeter;
 
     @MockBean
     private MessageRepository repository;

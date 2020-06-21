@@ -8,9 +8,8 @@ import org.springframework.stereotype.Service;
 @Service
 @Profile("test")
 @Primary
-public class EnergeticGreeter implements Greeter {
+public class EnergeticGreeter {
 
-    @Override
     public Message welcome() {
         return new Message("Hello Hello Hello");
     }

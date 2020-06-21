@@ -1,7 +1,7 @@
 package me.spike.beanreplacement.consumer;
 
 import lombok.AllArgsConstructor;
-import me.spike.beanreplacement.service.Greeter;
+import me.spike.beanreplacement.service.EnergeticGreeter;
 import me.spike.beanreplacement.service.MessageRepository;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.support.JmsHeaders;
@@ -13,7 +13,7 @@ import javax.jms.TextMessage;
 @AllArgsConstructor
 @Service
 public class Consumer {
-    private Greeter greeter;
+    private EnergeticGreeter greeter;
     private MessageRepository repository;
 
     @JmsListener(destination = "foo.bar")
