@@ -20,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
+//@DirtiesContext TODO - Uncomment for all tests in this project to pass
 public class FirstHappyPathApplicationTest {
 
     @Autowired
