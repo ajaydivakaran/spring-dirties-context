@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,8 +17,7 @@ import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
-public class ZConsumerIntegrationTest {
+public class JMSConsumerIntegrationTest {
 
     @Autowired
     private JmsTemplate jmsTemplate;
@@ -30,7 +28,7 @@ public class ZConsumerIntegrationTest {
     @MockBean
     private MessageRepository repository;
 
-    //Todo - To get all tests in this project to pass look at Todo added to FirstHappyPathApplicationTest
+    //Todo - To get all tests in this project to pass when entire test suite is run look at Todos added.
     @Test
     public void shouldInvokeRepositoryWhenGreetedWithASpecificMessage() {
         when(greeter.welcome()).thenReturn(new Message("Ahem hello!!"));
