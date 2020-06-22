@@ -6,10 +6,12 @@ import me.spike.beanreplacement.service.MessageRepository;
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,10 +20,14 @@ import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ContextConfiguration(initializers = DestinationValueInitializer.class)
 public class JMSConsumerIntegrationTest {
 
     @Autowired
     private JmsTemplate jmsTemplate;
+
+    @Value("${consumer.destination}")
+    private String destination;
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -39,7 +45,7 @@ public class JMSConsumerIntegrationTest {
 
         System.out.println("--- Send from context: " + applicationContext.toString());
 
-        jmsTemplate.send("foo.bar", session -> session.createTextMessage("hello world"));
+        jmsTemplate.send(destination, session -> session.createTextMessage("hello world"));
 
         Awaitility.await().atMost(10, TimeUnit.SECONDS).untilAsserted(
                 () -> verify(repository, times(1)).save()

@@ -18,7 +18,7 @@ public class Consumer {
     private MessageRepository repository;
     private ApplicationContext applicationContext;
 
-    @JmsListener(destination = "foo.bar")
+    @JmsListener(destination = "${consumer.destination}")
     public void consume(
             @Header(name = JmsHeaders.MESSAGE_ID, required = false) String messageId,
             TextMessage textMessage) {
