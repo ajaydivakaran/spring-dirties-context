@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.ApplicationContext;
 import org.springframework.jms.core.JmsTemplate;
 
 import java.util.concurrent.TimeUnit;
@@ -22,6 +23,9 @@ public class JMSConsumerIntegrationTest {
     @Autowired
     private JmsTemplate jmsTemplate;
 
+    @Autowired
+    private ApplicationContext applicationContext;
+
     @MockBean
     private EnergeticGreeter greeter;
 
@@ -32,6 +36,8 @@ public class JMSConsumerIntegrationTest {
     @Test
     public void shouldInvokeRepositoryWhenGreetedWithASpecificMessage() {
         when(greeter.welcome()).thenReturn(new Message("Ahem hello!!"));
+
+        System.out.println("--- Send from context: " + applicationContext.toString());
 
         jmsTemplate.send("foo.bar", session -> session.createTextMessage("hello world"));
 
